@@ -17,6 +17,5 @@ export const handlers = [
             ctx.status(200),
             ctx.json(menuItems)
         )
-
     })
 ]
