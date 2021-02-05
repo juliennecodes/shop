@@ -1,0 +1,30 @@
+.menu-item{
+    display: grid;
+    grid: 5fr 1fr 1fr 1fr/ 1fr;
+    grid-template-areas:
+    "image"
+    "name"
+    "price"
+    "button"
+     ;
+    padding: 12px;
+    align-items: center;
+}
+
+.menu-item__image {
+    grid-area: image;
+    max-width: 150px;
+}
+
+.menu-item__name {
+    grid-area: name;
+    align-self: flex-start;
+}
+
+.menu-item__price {
+    grid-area: price;
+}
+
+.menu-item__button {
+    grid-area: button;
+}
