@@ -3,7 +3,7 @@ import './MenuItems.css';
 
 export function MenuItems({ menuItems }) {
   return (
-    <ul class="menu-items">
+    <ul className="menu-items">
       {menuItems.map((menuItem, index) => {
         return <MenuItem
           name={menuItem.name}
