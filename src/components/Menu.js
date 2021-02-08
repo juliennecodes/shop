@@ -5,9 +5,9 @@ function Loading() {
   return <p>Loading</p>;
 }
 
-export function Menu() {
+export function Menu({updateCart}) {
   const [menuItems, setMenuItems] = useState(null);
-
+  
   useEffect(() => {
     fetch("/menu")
       .then((res) => res.json())
@@ -15,6 +15,6 @@ export function Menu() {
   }, []);
 
   return (
-    menuItems? <MenuItems menuItems={menuItems}/> : <Loading/>
+    menuItems? <MenuItems menuItems={menuItems} updateCart={updateCart}/> : <Loading/>
   );
 }

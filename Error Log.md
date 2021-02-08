@@ -1,4 +1,6 @@
 #Promises
+-you can deal with promises by either await, which waits for the promise to resolve
+-or you can use then, which does something with the value inside the promise object
 
 #Where to place fetch
 -I originally placed the fetch request in the menu item component because I thought it was menuItems component that needed the information. However, because I needed to wait for the information in the fetch request, I needed a loading component. It was a bit awkward to have the conditional rendering of true? menuItems : loading in the menuItems component. I thought it was cleaner to place the fetch request in the menu component even if the information has to be passed down by a component that doesn't directly need it. It made menuItems more concise even if the information wasn't directly available. It was just focused on mapping through the information.
@@ -23,3 +25,12 @@
 -I'd rather not add data test id
 -But if all you're proving is that the add to cart works, maybe just send one menu item back from the mock server
 -It might be irrelevant that there are multiple buttons with the same purpose
+
+#How do you break the little steps when so many actions are bundled together in that little step
+- i.e adding item to cart - you have to set up the server, the fetching of the cartItems, the updating of the cartItems, the mock server for testing, the test, then router - well maybe you can leave this one for now
+- solution - draw a sequence diagram with each player's and their roles and actions separated
+- where to start when so many moving parts are intertwined?
+
+#Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
+-I'm rendering the app and initially set the cart state to null. It will take some time to fetch the cart value so I put it in a useEffect. The app will request the cart from the server. So timeline is, app renders, after the first render, useEffect takes place, and rerenders the component. However, the server response hasn't been received yet and when it is processed, the cart state from the previous component is already gone. Hmmm. useRef?
+-I found a solution online. It was by creating a cleanup. It says to only set the state when the boolean is true. However, I'm not quite sure how async works. I thought it is set aside until it is resolved. Meanwhile, you move on to the next line. If so, doesn't the code reach the part where you set the boolean to false, making set state not work. Is it all just a matter of timing then, like, can you set this value fast enough? How is the cleanup working really? Doesn't the function and its variables get discarded afterwards, anyways? what does it matter if a binding is holding onto whether it is true or not. It isn't a property of anything. 

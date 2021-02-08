@@ -1,7 +1,7 @@
 import { MenuItem } from "./MenuItem";
 import './MenuItems.css';
 
-export function MenuItems({ menuItems }) {
+export function MenuItems({ menuItems, updateCart }) {
   return (
     <ul className="menu-items">
       {menuItems.map((menuItem, index) => {
@@ -10,6 +10,7 @@ export function MenuItems({ menuItems }) {
           price={menuItem.price}
           imageLocation={menuItem.imageLocation}
           key={index}
+          updateCart={updateCart}
         />;
       })}
     </ul>

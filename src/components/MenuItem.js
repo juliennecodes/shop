@@ -1,6 +1,6 @@
 import "./MenuItem.css";
 
-export function MenuItem({ name, price, imageLocation }) {
+export function MenuItem({ name, price, imageLocation, updateCart }) {
     return (
       <li className="menu-item">
         <img
@@ -10,7 +10,7 @@ export function MenuItem({ name, price, imageLocation }) {
         ></img>
         <p className="menu-item__name">{name}</p>
         <p className="menu-item__price">{price}</p>
-        <button className="menu-item__button">Add to Cart</button>
+        <button className="menu-item__button" onClick={()=> updateCart(name, 1)}>Add to Cart</button>
       </li>
     );
   }
