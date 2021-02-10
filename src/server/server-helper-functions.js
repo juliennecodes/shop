@@ -70,3 +70,4 @@ exports.isNotInCart = isNotInCart;
 exports.changeItemQuantity = changeItemQuantity;
 exports.addItemToCart = addItemToCart;
 exports.pickItemFromShelf = pickItemFromShelf;
+exports.convertToCartObject = convertToCartObject;

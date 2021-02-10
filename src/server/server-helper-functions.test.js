@@ -6,6 +6,7 @@ const {
   changeItemQuantity,
   addItemToCart,
   pickItemFromShelf,
+  convertToCartObject,
 } = require("./server-helper-functions");
 
 test("cart updates", () => {
@@ -213,6 +214,49 @@ test("pick item from shelf is working", () => {
     price: 2,
     category: "Snack",
     imageLocation: "images/custard.jpeg",
+  });
+});
+
+test("cart is converted to cart object", () => {
+  const cart = new Cart([
+    {
+      name: "Custard",
+      price: 2,
+      category: "Snack",
+      imageLocation: "images/custard.jpeg",
+      quantity: 1,
+    },
+    {
+      name: "Cup Jelly",
+      price: 1,
+      category: "Snack",
+      imageLocation: "images/cup-jelly.jpeg",
+      quantity: 5,
+    },
+  ]);
+
+  const cartObject = convertToCartObject(cart);
+
+  expect(cartObject).toEqual({
+    cartItems: [
+      {
+        name: "Custard",
+        price: 2,
+        category: "Snack",
+        imageLocation: "images/custard.jpeg",
+        quantity: 1,
+      },
+      {
+        name: "Cup Jelly",
+        price: 1,
+        category: "Snack",
+        imageLocation: "images/cup-jelly.jpeg",
+        quantity: 5,
+      },
+    ],
+    subtotal: 7,
+    tax: 0.91,
+    total: 7.91,
   });
 });
 
