@@ -36,40 +36,10 @@ app.get("/cart", (req, res) => {
   res.json(cart);
 });
 
-// app.post('/cart', (req, res)=>{
-//     const itemName = req.body.itemName;
-//     const updateQuantity = req.body.itemQuantity;
-
-//     //this sends an updated cart to the client
-//     //server uses information from post request to update data accordingly
-
-//     //so there has to be a cart object that gets updated in the server
-
-//     //if item is in cart, update quantity
-
-//     //if item is not in cart and quantity is to increased, add item to cart
-//     //it item is not in cart and quantity is to be decreased, don't do anything
-
-//     //create a new cart based on the updated cart items - const updatedCart = newCart(updatedCartItems);
-//     //then update the cart object - so the get request can have an updated value also
-//     //cart = {
-//         // cartItems: classCart.cartItems;
-//         // subtotal: classCart.subtotal;
-//         // tax: classCart.tax;
-//         // total: classCart.total;
-//     // }
-
-//     // res.json(updatedCart);
-
-// });
-
 app.post("/cart", (req, res) => {
   console.log("post request to cart made");
   const itemName = req.body.itemName;
   const newQty = req.body.newQty;
-  console.log(`req.itemName is ${req.itemName}`);
-  console.log(`req.body.itemName is ${req.body.itemName}`);
-  console.log(req.body.newQty);
   const updatedCart = updateCart(itemName, cart, newQty, menuItems);
   cart = convertToCartObject(updatedCart);
   //I forgot you have to send cart in a proper format

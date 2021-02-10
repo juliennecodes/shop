@@ -60,3 +60,17 @@ I had the function add to cart but it was too messy and too complicated and it w
         addNewItemToCart();
     }
     }
+
+#Question on explicit parameters
+I wasn't sure if I should depend on global bindings. It seems to work fine but in tests, it seems like it's not registering. Like, in menuItems, the linter isn't complaining that there is an undefined binding. While in test files, even if the binding is available globally, it doesn't register as that. Does it have something to do with the test function? Is it not able to register, hmmm, no that doesn't make sense, it is able to detect helper functions so I don't know. Pasting here in case I forget I asked this.
+
+// function pickItemFromShelf(itemName){
+//     //return object
+//     return menuItems.find((menuItem) => menuItem.name === itemName);
+// }
+//needs menuItems database file
+//don't know if I should declare it as an argument, but it will crowd addItemToCart since this function is called inside that function
+//I just tested it and it seems like I have to pass menuItems explicitly. Even though I exposed the binding globally,
+//it seems as though it is not being picked up on.
+
+The reason I wanted to cut down on it was to not crowd the function that was using this function.
