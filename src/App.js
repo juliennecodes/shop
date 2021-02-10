@@ -4,6 +4,7 @@ import "./App.css";
 import { Cart } from "./components/Cart";
 import { HomePage } from "./components/Homepage";
 import { Menu } from "./components/Menu";
+import { Navigation } from "./components/Navigation";
 
 function App() {
   const [cart, setCart] = useState(null);
@@ -33,6 +34,7 @@ function App() {
     <div className="App">
       <h1>Cafe</h1>
       <Router>
+        <Navigation />
         <Switch>
           <Route path="/" exact>
             <HomePage />
