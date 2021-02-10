@@ -1,15 +1,7 @@
 const { menuItems } = require("./database-cafe");
 const express = require("express");
-const { Cart } = require("./cart");
 const app = express();
-const {
-  updateCart,
-  isInCart,
-  isNotInCart,
-  changeItemQuantity,
-  addItemToCart,
-  pickItemFromShelf,
-} = require("./server-helper-functions");
+const { updateCart } = require("./server-helper-functions");
 
 /*--------------------------------------------------------------
 
@@ -41,20 +33,8 @@ app.post("/cart", (req, res) => {
   const itemName = req.body.itemName;
   const newQty = req.body.newQty;
   const updatedCart = updateCart(itemName, cart, newQty, menuItems);
-  cart = convertToCartObject(updatedCart);
-  //I forgot you have to send cart in a proper format
-  //combine convertToCartObject with updateCart
+  cart = updatedCart;
   res.json(cart);
 });
 
 app.listen(8000, () => console.log("listening at port 8000"));
-
-function convertToCartObject(cart) {
-  // return cart object
-  return {
-    cartItems: [...cart.cartItems],
-    subtotal: cart.subtotal,
-    tax: cart.tax,
-    total: cart.total,
-  };
-}

@@ -2,65 +2,67 @@ const { Cart } = require("./cart");
 
 function updateCart(itemName, cart, newQty, shelf) {
   if (isInCart(itemName, cart)) {
-    let updatedCartItems = changeItemQuantity(itemName, cart);
-    return new Cart(updatedCartItems);
+    const updatedCartItems = changeItemQuantity(itemName, cart);
+    const updatedCart = new Cart(updatedCartItems);
+    return convertToCartObject(updatedCart);
   }
 
   if (isNotInCart(itemName, cart) && newQty > 0) {
-    let updatedCartItems = addItemToCart(itemName, cart, newQty, shelf);
-    return new Cart(updatedCartItems);
+    const updatedCartItems = addItemToCart(itemName, cart, newQty, shelf);
+    const updatedCart = new Cart(updatedCartItems);
+    return convertToCartObject(updatedCart);
   } else {
     return cart;
   }
 }
 
 function isInCart(itemName, cart) {
-  let x = cart.cartItems.find((cartItem) => {
+  const x = cart.cartItems.find((cartItem) => {
     return cartItem.name === itemName;
   });
 
-  if (x) {
-    return true;
-  } else {
-    return false;
-  }
+//   if (x) {return true;} else {return false;}
+    if (x) return true; else return false;
 }
 
 function isNotInCart(itemName, cart) {
-  let x = cart.cartItems.find((cartItem) => {
+  const x = cart.cartItems.find((cartItem) => {
     return cartItem.name === itemName;
   });
 
-  if (x) {
-    return false;
-  } else {
-    return true;
-  }
+//   if (x) {return false;} else {return true;}
+    if (x) return false; else return true;
 }
 
-function changeItemQuantity(itemName, cart, newQty){
-    let updatedCart = cart.cartItems.map((cartItem) => {
-        if(cartItem.name === itemName){
-            return {...cartItem, quantity: cartItem.quantity + newQty};
-        } else {
-            return cartItem;
-        }
-    });
-    return updatedCart;
+function changeItemQuantity(itemName, cart, newQty) {
+  const updatedCart = cart.cartItems.map((cartItem) => {
+    if (cartItem.name === itemName) {
+      return { ...cartItem, quantity: cartItem.quantity + newQty };
+    } else {
+      return cartItem;
+    }
+  });
+  return updatedCart;
 }
 
-function addItemToCart(itemName, cart, newQty, shelf){
-    let item = pickItemFromShelf(itemName, shelf);
-    let updatedCart = [...cart.cartItems, {...item, quantity: newQty}];
-    return updatedCart;
+function addItemToCart(itemName, cart, newQty, shelf) {
+  const item = pickItemFromShelf(itemName, shelf);
+  const updatedCart = [...cart.cartItems, { ...item, quantity: newQty }];
+  return updatedCart;
 }
 
-
-function pickItemFromShelf(itemName, shelf){
-    //return object
-    return shelf.find((menuItem) => menuItem.name === itemName);
+function pickItemFromShelf(itemName, shelf) {
+  return shelf.find((menuItem) => menuItem.name === itemName);
 }
 
+function convertToCartObject(cart) {
+  return {
+    cartItems: [...cart.cartItems],
+    subtotal: cart.subtotal,
+    tax: cart.tax,
+    total: cart.total,
+  };
+}
 
 exports.updateCart = updateCart;
 exports.isInCart = isInCart;

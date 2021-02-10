@@ -8,33 +8,6 @@ const {
   pickItemFromShelf,
 } = require("./server-helper-functions");
 
-const cart = {
-  cartItems: [
-    {
-      name: "Custard",
-      price: 2,
-      category: "Snack",
-      imageLocation: "images/custard.jpeg",
-      quantity: 1,
-    },
-  ],
-};
-
-const cupJelly = {
-  name: "Cup Jelly",
-  price: 1,
-  category: "Snack",
-  imageLocation: "images/cup-jelly.jpeg",
-};
-const custard = {
-  name: "Custard",
-  price: 2,
-  category: "Snack",
-  imageLocation: "images/custard.jpeg",
-};
-
-const menuItems = [cupJelly, custard];
-
 test("cart updates", () => {
   const cart = {
     cartItems: [
@@ -81,7 +54,9 @@ test("cart updates", () => {
         quantity: 5,
       },
     ],
-    taxRate: 0.13,
+    subtotal: 7,
+    tax: 0.91,
+    total: 7.91,
   });
 });
 
@@ -215,10 +190,6 @@ test("item is added to cart", () => {
     },
   ]);
 });
-//I used toContain so and so items but I guess you can limit yourself to only one? It was saying I was expecting
-//custard only but I had cup jelly as well, just separated by a comma
-// Expected value: {"category": "Snack", "imageLocation": "images/custard.jpeg", "name": "Custard", "price": 2, "quantity": 1}
-// Received array: [{"category": "Snack", "imageLocation": "images/custard.jpeg", "name": "Custard", "price": 2, "quantity": 1}, {"category": "Snack", "imageLocation": "images/cup-jelly.jpeg", "name": "Cup Jelly", "price": 1, "quantity": 1}]
 
 test("pick item from shelf is working", () => {
   const cupJelly = {
@@ -246,7 +217,6 @@ test("pick item from shelf is working", () => {
 });
 
 //Helper functions
-
 function findItem(itemName, cart) {
   return cart.cartItems.find((cartItem) => cartItem.name === itemName);
 }
