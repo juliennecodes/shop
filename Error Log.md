@@ -33,4 +33,30 @@
 
 #Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
 -I'm rendering the app and initially set the cart state to null. It will take some time to fetch the cart value so I put it in a useEffect. The app will request the cart from the server. So timeline is, app renders, after the first render, useEffect takes place, and rerenders the component. However, the server response hasn't been received yet and when it is processed, the cart state from the previous component is already gone. Hmmm. useRef?
--I found a solution online. It was by creating a cleanup. It says to only set the state when the boolean is true. However, I'm not quite sure how async works. I thought it is set aside until it is resolved. Meanwhile, you move on to the next line. If so, doesn't the code reach the part where you set the boolean to false, making set state not work. Is it all just a matter of timing then, like, can you set this value fast enough? How is the cleanup working really? Doesn't the function and its variables get discarded afterwards, anyways? what does it matter if a binding is holding onto whether it is true or not. It isn't a property of anything. 
+-I found a solution online. It was by creating a cleanup. It says to only set the state when the boolean is true. However, I'm not quite sure how async works. I thought it is set aside until it is resolved. Meanwhile, you move on to the next line. If so, doesn't the code reach the part where you set the boolean to false, making set state not work. Is it all just a matter of timing then, like, can you set this value fast enough? How is the cleanup working really? Doesn't the function and its variables get discarded afterwards, anyways? what does it matter if a binding is holding onto whether it is true or not. What does it matter if the binding remains true when the function finishes? How exactly is that a cleanup? You only set the state once, it isn't like you're repeatedly setting it at an interval.
+
+#To copy an object, except for one property, you can map and just create an object with those properties and use the current element for its values
+const inventory = menuItems.map((menuItem)=> {
+    return {
+        name: menuItem.name,
+        price: menuItem.price,
+        category: menuItem.category,
+    }
+})
+-didn't copy image location
+-oh maybe I actually do need the image for the cart
+
+#Too complicated
+I had the function add to cart but it was too messy and too complicated and it was hard to start. What helped was actually writing down what I wanted to happen in plain descriptive words. Even though the functions didn't exist yet, the general concept is there to help simplify things.
+    function addItemToCart(itemName, cart, newQty) {
+    // return cart
+    let cartItems = cart.cartItems;
+
+    if (isInCart(itemName, cart)) {
+        changeItemQuantity();
+    } 
+
+    if(isNotInCart(itemName, cart) && newQty > 0){
+        addNewItemToCart();
+    }
+    }
