@@ -24,8 +24,6 @@ function isInCart(itemName, cart) {
   } else {
     return false;
   }
-  //is this necessary if I'm using the helper function in a conditional
-  //just making it explicit that I'm producing a boolean value
 }
 
 function isNotInCart(itemName, cart) {
@@ -38,8 +36,6 @@ function isNotInCart(itemName, cart) {
   } else {
     return true;
   }
-  //is this necessary if I'm using the helper function in a conditional
-  //needed for inversion of boolean
 }
 
 function changeItemQuantity(itemName, cart, newQty){
