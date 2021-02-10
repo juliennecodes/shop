@@ -2,7 +2,7 @@ const { Cart } = require("./cart");
 
 function updateCart(itemName, cart, newQty, shelf) {
   if (isInCart(itemName, cart)) {
-    const updatedCartItems = changeItemQuantity(itemName, cart);
+    const updatedCartItems = changeItemQuantity(itemName, cart, newQty);
     const updatedCart = new Cart(updatedCartItems);
     return convertToCartObject(updatedCart);
   }

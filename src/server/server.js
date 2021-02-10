@@ -34,6 +34,7 @@ app.post("/cart", (req, res) => {
   const newQty = req.body.newQty;
   const updatedCart = updateCart(itemName, cart, newQty, menuItems);
   cart = updatedCart;
+  console.log(cart);
   res.json(cart);
 });
 

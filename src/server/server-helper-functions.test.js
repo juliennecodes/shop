@@ -103,20 +103,22 @@ test("item can increase in quantity", () => {
         price: 2,
         category: "Snack",
         imageLocation: "images/custard.jpeg",
-        quantity: 1,
+        quantity: 3,
       },
     ],
   };
 
   const custardBeforeAdding = findItem("Custard", cart);
-  expect(custardBeforeAdding.quantity).toEqual(1);
+  expect(custardBeforeAdding.quantity).toEqual(3);
 
-  const updatedCartItems = changeItemQuantity("Custard", cart, 1);
+  const updatedCartItems = changeItemQuantity("Custard", cart, 7);
 
   const updatedCart = new Cart(updatedCartItems);
 
   const custardAfterAdding = findItem("Custard", updatedCart);
-  expect(custardAfterAdding.quantity).toEqual(2);
+  expect(custardAfterAdding.quantity).toEqual(10);
+
+
 });
 
 test("item can decrease in quantity", () => {

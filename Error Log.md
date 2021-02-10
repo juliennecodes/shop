@@ -74,3 +74,6 @@ I wasn't sure if I should depend on global bindings. It seems to work fine but i
 //it seems as though it is not being picked up on.
 
 The reason I wanted to cut down on it was to not crowd the function that was using this function.
+
+#Error missed by test
+I had an error where the totals mess up when I try to increase the quantity of an already existing cart item. Tracking it down was a bit of pain since all the tests were passing and it seemed like the functions worked as they should. The error was I missed writing the parameter in updateCart's helper function. It seems obvious now. It was in changeQuantity. However, I did check the actual function instead of the one inside updateCart. I also went to isInCart before I checked updateCart. The test missed the error because while I was adding multiple quantities, I was adding them in one go. So in updateCart, instead of changing item quantity of an already existing cart item, I was actually just adding item to cart. This was in the test for update cart. I think I wrote the other tests fine, maybe.
