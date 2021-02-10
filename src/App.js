@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import { Cart } from "./components/Cart";
+import { HomePage } from "./components/Homepage";
 import { Menu } from "./components/Menu";
 
 function App() {
@@ -11,10 +13,10 @@ function App() {
     fetch("/cart")
       .then((res) => res.json())
       .then((serverCart) => {
-        setCart(serverCart)
+        setCart(serverCart);
         if (mounted) setCart(serverCart);
       });
-    return ()=> mounted = false;
+    return () => (mounted = false);
   }, []);
 
   const updateCart = (itemName, newQty) => {
@@ -30,8 +32,21 @@ function App() {
   return (
     <div className="App">
       <h1>Cafe</h1>
-      <Menu updateCart={updateCart} />
-      <Cart cart={cart} setCart={setCart} />
+      <Router>
+        <Switch>
+          <Route path="/" exact>
+            <HomePage />
+          </Route>
+
+          <Route path="/menu">
+            <Menu updateCart={updateCart} />
+          </Route>
+
+          <Route path="/cart">
+            <Cart cart={cart} setCart={setCart} />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }

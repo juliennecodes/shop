@@ -77,3 +77,8 @@ The reason I wanted to cut down on it was to not crowd the function that was usi
 
 #Error missed by test
 I had an error where the totals mess up when I try to increase the quantity of an already existing cart item. Tracking it down was a bit of pain since all the tests were passing and it seemed like the functions worked as they should. The error was I missed writing the parameter in updateCart's helper function. It seems obvious now. It was in changeQuantity. However, I did check the actual function instead of the one inside updateCart. I also went to isInCart before I checked updateCart. The test missed the error because while I was adding multiple quantities, I was adding them in one go. So in updateCart, instead of changing item quantity of an already existing cart item, I was actually just adding item to cart. This was in the test for update cart. I think I wrote the other tests fine, maybe.
+
+#Error in rendering component that matches the route path
+- "A <Switch> looks through its children <Route>s and renders the first one that matches the current URL."
+- Because the route path for the homepage was /, even when I was typing /menu, the homepage was the one being rendered
+- I guess it stopped at the slash? To fix it, you have to type exact in the homepage
