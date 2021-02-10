@@ -1,0 +1,15 @@
+.subtotal, .tax, .total {
+    display: grid;
+    grid: 1fr / 150px 50px;
+    grid-template-areas:
+    "title cost" ;
+}
+
+.subtotal__title, .tax__title, .total__title {
+    grid-area: title;
+}
+
+.subtotal__cost, .tax__cost, .total__cost {
+    grid-area: cost;
+    justify-self: flex-end;
+}

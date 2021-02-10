@@ -1,0 +1,12 @@
+.cart-item {
+    display: grid;
+    grid-template-columns: 50px repeat(2, 1fr) 50px;
+}
+
+.cart-item__image {
+    max-width: 50px;
+}
+
+.cart-item__price{
+    justify-self: flex-end;
+}

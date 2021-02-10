@@ -1,9 +1,13 @@
-export function CartItem({name, price, quantity}){
+import './CartItem.css';
+
+export function CartItem({imageLocation, name, price, quantity}){
     return(
-        <div className='cart-item'>
-            <p>{name}</p>
-            <p>{price}</p>
-            <p>{quantity}</p>
-        </div>
+        <li className='cart-item'>
+            <img className="cart-item__image" src={imageLocation} alt={name}></img>
+            <p className="cart-item__name">{name}</p>
+            <p className="cart-item__quantity">{quantity}</p>
+            <p className="cart-item__price">{(price * quantity).toFixed(2)}</p>
+
+        </li>
     );
 }

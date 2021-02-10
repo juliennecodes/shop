@@ -1,6 +1,6 @@
 // import {useEffect} from 'react';
 import { CartItems } from "./CartItems";
-import { CartSummary } from "./CartSummary";
+import { OrderSummary } from "./OrderSummary";
 
 function Loading() {
   return <p>Loading</p>;
@@ -9,9 +9,8 @@ function Loading() {
 export function Cart({ cart }) {
   return cart ? (
     <div>
-      <h1>Cart</h1>
       <CartItems cartItems={cart.cartItems}/>
-      <CartSummary subtotal={cart.subtotal} tax={cart.tax} total={cart.total} />
+      <OrderSummary subtotal={cart.subtotal} tax={cart.tax} total={cart.total} />
     </div>
   ) : (
     <div>
