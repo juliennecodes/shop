@@ -1,12 +1,15 @@
 .cart-item {
     display: grid;
-    grid-template-columns: 50px repeat(2, 1fr) 50px;
+    grid-template-columns: 2fr 5fr 2fr 2fr 1fr;
+    align-items: center;
+    justify-items: flex-start;
+    padding: 12px;
 }
 
 .cart-item__image {
     max-width: 50px;
 }
 
-.cart-item__price{
+.cart-item__price, .cart-item__remove{
     justify-self: flex-end;
 }

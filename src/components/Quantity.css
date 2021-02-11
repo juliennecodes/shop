@@ -1,0 +1,27 @@
+.quantity {
+    display: flex;
+    flex-direction: row;
+    width: 108px;
+    border: 1px solid hsl(0, 0%, 50%);
+}
+
+.increase-qty, .decrease-qty{
+    width: 36px;
+    height: 36px;
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-item__quantity{
+    width: 36px;
+    height: 36px;
+    border: 0;
+    text-align: center;
+    padding: 0;
+}
+
+.increase-qty__svg, .decrease-qty__svg{
+    width: 16px;
+}
