@@ -102,6 +102,21 @@ I had an error where the totals mess up when I try to increase the quantity of a
 - nevermind, it was because I added the router. Now, when app is rendered, the page is on the homepage so I have to navigate to get to the menu page or the cart page
 - I think I might have detected this earlier if I didn't add skip to tests
 - nevermind the nevermind, I'm getting errors again - replaced the callback inside waitFor from screen.findBy to screen.getBy, I don't know if I have to explicitly do await inside the callback even if the outside function has await already written. Just in case, I replaced it with getBy since waitFor repeatedly calls the callback anyways until it evaluates to true? Or is it it just calls it once and waits for it to evaluate to true :S
+-oh I guess I can't do getBy instead of findBy because getBy immediately returns false? error? the documentation says it throws instead of return.
 - also, maybe I'm getting errors because I have conflicting information in my msw server
 - I differentiated the objects I sent from the server so I can verify that I'm hitting the proper endpoints. While it worked before since the app was only in one page, now that I have dedicated pages, I might get conflicting information from get request to cart and post request to cart
 
+#implement onChange on input
+- I'll do an empty callback for now because I have to create a new endpoint for the server and a new function that makes a fetch request to that endpoint
+
+#Why isn't the promise being handled? Isn't await the one handling promises?
+-await waitFor(async() => expect(await screen.findByText(/red bean bread/i))).toBeInTheDocument();
+-screenshot
+
+#Trouble with menu items being rendered in test
+- I don't know why but I'm having trouble with the menu items being rendered in test
+- it works fine on the app, is it msw server that is configured wrong?
+- it doesn't seem like the await waitFor because it works fine on the cart, which similarly, makes a get request
+- although I'm still getting the error of overlapping act calls - I don't know what that means
+- since I think the problem is in fetching the menu items, I put the fetch in its own useEffect. It didn't seem to fix the test though.
+- I don't understand, it's configured the same as the get request to cart, the difference is the endpoint, what is being sent, I don't know

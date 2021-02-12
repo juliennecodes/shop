@@ -4,7 +4,7 @@ export function Quantity({ name, quantity, updateCart }) {
   return (
     <div className="quantity">
       <DecreaseQty name={name} updateCart={updateCart}/>
-      <input className="cart-item__quantity" value={quantity}/>
+      <input className="cart-item__quantity" value={quantity} onChange={()=>{}}/>
       <IncreaseQty name={name} updateCart={updateCart}/>
     </div>
   );

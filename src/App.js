@@ -18,15 +18,23 @@ function App() {
         if (mounted) setCart(serverCart);
       });
 
+    // fetch("/menu")
+    //   .then((res) => res.json())
+    //   .then((menuItems) => {
+    //     if (mounted) setMenuItems(menuItems);
+    //   });
+    return () => (mounted = false);
+  }, []);
+
+  useEffect(() => {
+    let mounted = true;
     fetch("/menu")
       .then((res) => res.json())
       .then((menuItems) => {
         if (mounted) setMenuItems(menuItems);
       });
     return () => (mounted = false);
-  }, []);
-
- 
+  });
 
   const updateCart = (itemName, newQty) => {
     fetch("/cart", {

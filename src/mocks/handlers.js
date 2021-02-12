@@ -6,8 +6,10 @@ export const handlers = [
       ctx.status(200),
       ctx.json([
         {
-          name: "Juice",
+          name: "Red Bean Bread",
           price: 5,
+          category: 'Bread',
+          imageLocation: 'images/red-bean-bread.jpeg'
         },
       ])
     );
@@ -19,7 +21,7 @@ export const handlers = [
       ctx.json({
         cartItems: [
           {
-            name: "Sandwich",
+            name: "Red Bean Bread",
             quantity: 1,
             price:5,
 
@@ -42,9 +44,9 @@ export const handlers = [
             quantity: 1,
           },
         ],
-        subtotal: 3,
-        tax: .39,
-        total: 3.39,
+        subtotal: 5,
+        tax: .65,
+        total: 5.65,
       })
     );
   }),
