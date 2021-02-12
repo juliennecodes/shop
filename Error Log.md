@@ -82,3 +82,9 @@ I had an error where the totals mess up when I try to increase the quantity of a
 - "A <Switch> looks through its children <Route>s and renders the first one that matches the current URL."
 - Because the route path for the homepage was /, even when I was typing /menu, the homepage was the one being rendered
 - I guess it stopped at the slash? To fix it, you have to type exact in the homepage
+
+#Error in querying for button
+-The temporary fix for this issue was to just return one item in the mock server. However, in the cart page, there are two buttons, increase and decrease. Sooo, I don't know how to deal with that.
+-The temporary fix can be just using the index number in the array returned. I don't think it's a good fix because you can always add buttons and that might mess up the index order.
+-Another temporary fix is adding data-test-id
+-I looked at an e commerce example that uses the increase and decrease and they have an aria label, maybe that? It might fix this particular multiple button issue but it still doesn't fix the actual multiple button issue - several buttons, such as Add to Cart, matching with the query

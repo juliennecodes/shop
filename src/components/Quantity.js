@@ -1,18 +1,18 @@
 import "./Quantity.css";
 
-export function Quantity({ quantity }) {
+export function Quantity({ name, quantity, updateCart }) {
   return (
     <div className="quantity">
-      <DecreaseQty />
+      <DecreaseQty name={name} updateCart={updateCart}/>
       <input className="cart-item__quantity" value={quantity}/>
-      <IncreaseQty />
+      <IncreaseQty name={name} updateCart={updateCart}/>
     </div>
   );
 }
 
-function IncreaseQty() {
+function IncreaseQty({name, updateCart}) {
   return (
-    <button className="increase-qty">
+    <button className="increase-qty" onClick={()=> updateCart(name, 1)} data-test-id="increaseQtyButton">
       <svg
         className="increase-qty__svg"
         xmlns="http://www.w3.org/2000/svg"
@@ -27,9 +27,9 @@ function IncreaseQty() {
   );
 }
 
-function DecreaseQty() {
+function DecreaseQty({name, updateCart}) {
   return (
-    <button className="decrease-qty">
+    <button className="decrease-qty" onClick={()=> updateCart(name, -1)} data-test-id="decreaseQtyButton">
       <svg
         className="decrease-qty__svg"
         xmlns="http://www.w3.org/2000/svg"

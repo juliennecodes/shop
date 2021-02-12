@@ -6,10 +6,10 @@ function Loading() {
   return <p>Loading</p>;
 }
 
-export function Cart({ cart }) {
+export function Cart({ cart, updateCart }) {
   return cart ? (
     <div>
-      <CartItems cartItems={cart.cartItems}/>
+      <CartItems cartItems={cart.cartItems} updateCart={updateCart}/>
       <OrderSummary subtotal={cart.subtotal} tax={cart.tax} total={cart.total} />
     </div>
   ) : (

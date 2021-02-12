@@ -1,6 +1,6 @@
 import { CartItem } from "./CartItem";
 
-export function CartItems({ cartItems }) {
+export function CartItems({ cartItems, updateCart }) {
   return (
     <div>
       <h1>Cart</h1>
@@ -12,6 +12,7 @@ export function CartItems({ cartItems }) {
               name={cartItem.name}
               price={cartItem.price}
               quantity={cartItem.quantity}
+              updateCart={updateCart}
               key={index}
             />
           );

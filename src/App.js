@@ -45,7 +45,7 @@ function App() {
           </Route>
 
           <Route path="/cart">
-            <Cart cart={cart} setCart={setCart} />
+            <Cart cart={cart} setCart={setCart} updateCart={updateCart}/>
           </Route>
         </Switch>
       </Router>

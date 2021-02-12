@@ -1,12 +1,12 @@
 import "./CartItem.css";
 import { Quantity } from "./Quantity";
 
-export function CartItem({ imageLocation, name, price, quantity }) {
+export function CartItem({ imageLocation, name, price, quantity, updateCart }) {
   return (
     <li className="cart-item">
       <img className="cart-item__image" src={imageLocation} alt={name}></img>
       <p className="cart-item__name">{name}</p>
-      <Quantity quantity={quantity} />
+      <Quantity name={name} quantity={quantity} updateCart={updateCart}/>
       <p className="cart-item__price">{(price * quantity).toFixed(2)}</p>
       <Remove />
     </li>
