@@ -5,14 +5,14 @@ function Loading() {
   return <p>Loading</p>;
 }
 
-export function Menu({ updateCart }) {
-  const [menuItems, setMenuItems] = useState(null);
+export function Menu({ menuItems, updateCart }) {
+  // const [menuItems, setMenuItems] = useState(null);
 
-  useEffect(() => {
-    fetch("/menu")
-      .then((res) => res.json())
-      .then((menuItems) => setMenuItems(menuItems));
-  }, []);
+  // useEffect(() => {
+  //   fetch("/menu")
+  //     .then((res) => res.json())
+  //     .then((menuItems) => setMenuItems(menuItems));
+  // }, []);
 
   return menuItems ? (
     <div>

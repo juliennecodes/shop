@@ -88,3 +88,20 @@ I had an error where the totals mess up when I try to increase the quantity of a
 -The temporary fix can be just using the index number in the array returned. I don't think it's a good fix because you can always add buttons and that might mess up the index order.
 -Another temporary fix is adding data-test-id
 -I looked at an e commerce example that uses the increase and decrease and they have an aria label, maybe that? It might fix this particular multiple button issue but it still doesn't fix the actual multiple button issue - several buttons, such as Add to Cart, matching with the query
+
+#I'm not sure how to do the updateCart testing with msw server. I mean, I can recreate the server logic of updating cart and recalculating the subtotals, tax, and total but it doesn't seem right?
+- do I test the calculations in the app or the server?
+- the server is doing the calculations so the app is only concerned with displaying the information, but I've already tested displaying the information
+- do I test that when you click the button it calls update cart, is that what I need to test?
+-My difficulty is I have to set up calculations in msw because the increase and decrease buttons make fetch requests to the same endpoint, unless I hijack it in spyOn? is that possible? modify the endpoint and just have a specialized endpoint handler for each of these actions? oh wait, I think I can do mockResolve instead
+
+#How do you differentiate between different fetch requests when you're planning on hijacking it with spyOn
+- I have included jest spyOn that hijacks fetch requests. However, I have both a get request and a post request. Presumably, they will both get hijacked by the same function
+
+#Warning: You seem to have overlapping act() calls, this is not supported. Be sure to await previous act() calls before making a new one.
+- nevermind, it was because I added the router. Now, when app is rendered, the page is on the homepage so I have to navigate to get to the menu page or the cart page
+- I think I might have detected this earlier if I didn't add skip to tests
+- nevermind the nevermind, I'm getting errors again - replaced the callback inside waitFor from screen.findBy to screen.getBy, I don't know if I have to explicitly do await inside the callback even if the outside function has await already written. Just in case, I replaced it with getBy since waitFor repeatedly calls the callback anyways until it evaluates to true? Or is it it just calls it once and waits for it to evaluate to true :S
+- also, maybe I'm getting errors because I have conflicting information in my msw server
+- I differentiated the objects I sent from the server so I can verify that I'm hitting the proper endpoints. While it worked before since the app was only in one page, now that I have dedicated pages, I might get conflicting information from get request to cart and post request to cart
+

@@ -8,17 +8,25 @@ import { Navigation } from "./components/Navigation";
 
 function App() {
   const [cart, setCart] = useState(null);
+  const [menuItems, setMenuItems] = useState(null);
 
   useEffect(() => {
     let mounted = true;
     fetch("/cart")
       .then((res) => res.json())
       .then((serverCart) => {
-        setCart(serverCart);
         if (mounted) setCart(serverCart);
+      });
+
+    fetch("/menu")
+      .then((res) => res.json())
+      .then((menuItems) => {
+        if (mounted) setMenuItems(menuItems);
       });
     return () => (mounted = false);
   }, []);
+
+ 
 
   const updateCart = (itemName, newQty) => {
     fetch("/cart", {
@@ -41,11 +49,11 @@ function App() {
           </Route>
 
           <Route path="/menu">
-            <Menu updateCart={updateCart} />
+            <Menu menu={menuItems} updateCart={updateCart} />
           </Route>
 
           <Route path="/cart">
-            <Cart cart={cart} setCart={setCart} updateCart={updateCart}/>
+            <Cart cart={cart} setCart={setCart} updateCart={updateCart} />
           </Route>
         </Switch>
       </Router>
