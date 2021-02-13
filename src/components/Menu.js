@@ -6,14 +6,6 @@ function Loading() {
 }
 
 export function Menu({ menuItems, updateCart }) {
-  // const [menuItems, setMenuItems] = useState(null);
-
-  // useEffect(() => {
-  //   fetch("/menu")
-  //     .then((res) => res.json())
-  //     .then((menuItems) => setMenuItems(menuItems));
-  // }, []);
-
   return menuItems ? (
     <div>
       <h1>Menu</h1>

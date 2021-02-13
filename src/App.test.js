@@ -38,24 +38,9 @@ test("when user clicks add to cart button, item is added to cart", async () => {
 
   const linkToCart = screen.getByRole("link", { name: "Cart" });
   userEvent.click(linkToCart);
-  //in a normal server, the cart would retain state
-  //however in the mock server, this is making a get request to the cart page
-  //making the add to cart action, which is a post request,  meaningless
   await waitFor(()=> screen.findByText(/16\.94/));
-  screen.debug();
-  //oh wait it works? why? 
-  //oh right, app makes the get request only once
-  //further changes to the cart is made through post requests
-  //I think I was thinking of page changes as browsers making get requests, like how browsers would request a page
-  //like when you go to the cart page, you get request to the cart endpoint
-  //in this case, app just renders the component with already existing information
-  //app keeps a state and the components such as menu and cart display UI according to that data
   expect(screen.getByText(/16\.94/)).toBeInTheDocument();
 });
-//This is hard to test because I have to go to the cart page to prove that the item is there
-//However by doing so, I make a get request to the cart endpoint, which at my current msw setup isn't really proving that
-//when user clicks add to card button, item is added to cart.
-//it's just proving that get request to the cart works
 
 // test("when user clicks + in the cart page, item quantity increases by one", async () => {
 //   server.close(); //just to make sure there msw and jest won't conflict
