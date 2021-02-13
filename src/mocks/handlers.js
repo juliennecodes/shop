@@ -41,12 +41,12 @@ export const handlers = [
         cartItems: [
           {
             name: "Red Bean Bread",
-            quantity: 1,
+            quantity: 3,
           },
         ],
-        subtotal: 5,
-        tax: .65,
-        total: 5.65,
+        subtotal: 15,
+        tax: 1.94,
+        total: 16.94,
       })
     );
   }),

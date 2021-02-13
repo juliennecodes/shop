@@ -18,23 +18,13 @@ function App() {
         if (mounted) setCart(serverCart);
       });
 
-    // fetch("/menu")
-    //   .then((res) => res.json())
-    //   .then((menuItems) => {
-    //     if (mounted) setMenuItems(menuItems);
-    //   });
-    return () => (mounted = false);
-  }, []);
-
-  useEffect(() => {
-    let mounted = true;
     fetch("/menu")
       .then((res) => res.json())
       .then((menuItems) => {
         if (mounted) setMenuItems(menuItems);
       });
     return () => (mounted = false);
-  });
+  }, []);
 
   const updateCart = (itemName, newQty) => {
     fetch("/cart", {
@@ -57,7 +47,7 @@ function App() {
           </Route>
 
           <Route path="/menu">
-            <Menu menu={menuItems} updateCart={updateCart} />
+            <Menu menuItems={menuItems} updateCart={updateCart} />
           </Route>
 
           <Route path="/cart">

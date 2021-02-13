@@ -120,3 +120,6 @@ I had an error where the totals mess up when I try to increase the quantity of a
 - although I'm still getting the error of overlapping act calls - I don't know what that means
 - since I think the problem is in fetching the menu items, I put the fetch in its own useEffect. It didn't seem to fix the test though.
 - I don't understand, it's configured the same as the get request to cart, the difference is the endpoint, what is being sent, I don't know
+-Oh, the error was I wasn't passing the right props, I had menu={menuItems} when it was supposed to be menuItems ={menuItems}
+-Contrary to what I thought, it actually wasn't working in the app, so the test, was rightfully complaining
+-Consequently, this seems to have gotten rid of the errors I've been getting such as overlapping act calls
