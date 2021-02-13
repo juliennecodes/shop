@@ -11,7 +11,10 @@ class Cart {
       (cartItem) => cartItem.price * cartItem.quantity
     );
 
-    return subtotals.reduce((current, subtotal) => current + subtotal);
+    // subtotals.length > 0 ? subtotals.reduce((current, subtotal) => current + subtotal) : 0;
+    if(subtotals.length > 0) return subtotals.reduce((current, subtotal) => current + subtotal) ;
+    else return 0;
+    
   }
 
   get tax(){

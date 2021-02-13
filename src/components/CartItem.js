@@ -1,22 +1,24 @@
 import "./CartItem.css";
 import { Quantity } from "./Quantity";
 
-export function CartItem({ imageLocation, name, price, quantity, updateCart }) {
+export function CartItem({ imageLocation, name, price, quantity, updateCart, removeItem }) {
   return (
     <li className="cart-item">
       <img className="cart-item__image" src={imageLocation} alt={name}></img>
       <p className="cart-item__name">{name}</p>
-      <Quantity name={name} quantity={quantity} updateCart={updateCart}/>
+      <Quantity name={name} quantity={quantity} updateCart={updateCart} />
       <p className="cart-item__price">{(price * quantity).toFixed(2)}</p>
-      <Remove />
+      <Remove name={name} removeItem={removeItem}/>
     </li>
   );
 }
 
-function Remove() {
+function Remove({name, removeItem}) {
   return (
     <div className="cart-item__remove">
       <svg
+        data-testid="removeButton"
+        onClick={()=> removeItem(name)}
         xmlns="http://www.w3.org/2000/svg"
         height="24"
         viewBox="0 0 24 24"

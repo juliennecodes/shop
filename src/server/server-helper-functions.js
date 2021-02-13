@@ -64,6 +64,17 @@ function convertToCartObject(cart) {
   };
 }
 
+function removeItem(itemName, cart){
+  if(isInCart(itemName, cart)){
+    const cartItems = cart.cartItems;
+    const updatedCartItems = cartItems.filter(cartItem => !(cartItem.name === itemName));
+    const updatedCart = new Cart(updatedCartItems);
+    return convertToCartObject(updatedCart);
+  } else {
+    return cart;
+  }
+}
+
 exports.updateCart = updateCart;
 exports.isInCart = isInCart;
 exports.isNotInCart = isNotInCart;
@@ -71,3 +82,4 @@ exports.changeItemQuantity = changeItemQuantity;
 exports.addItemToCart = addItemToCart;
 exports.pickItemFromShelf = pickItemFromShelf;
 exports.convertToCartObject = convertToCartObject;
+exports.removeItem = removeItem;

@@ -7,6 +7,7 @@ const {
   addItemToCart,
   pickItemFromShelf,
   convertToCartObject,
+  removeItem
 } = require("./server-helper-functions");
 
 test("cart updates", () => {
@@ -117,8 +118,6 @@ test("item can increase in quantity", () => {
 
   const custardAfterAdding = findItem("Custard", updatedCart);
   expect(custardAfterAdding.quantity).toEqual(10);
-
-
 });
 
 test("item can decrease in quantity", () => {
@@ -259,6 +258,27 @@ test("cart is converted to cart object", () => {
     subtotal: 7,
     tax: 0.91,
     total: 7.91,
+  });
+});
+
+test("item can be deleted from the cart", () => {
+  const cart = {
+    cartItems: [
+      {
+        name: "Custard",
+        price: 2,
+        category: "Snack",
+        imageLocation: "images/custard.jpeg",
+        quantity: 1,
+      },
+    ],
+  };
+
+  expect(removeItem("Custard", cart)).toEqual({
+    cartItems: [],
+    subtotal: 0,
+    tax: 0,
+    total: 0,
   });
 });
 

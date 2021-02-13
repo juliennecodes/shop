@@ -1,5 +1,5 @@
 import App from "./App";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { server } from "./mocks/mock-server";
 import userEvent from "@testing-library/user-event";
@@ -89,10 +89,29 @@ test("when user clicks - and it reaches 0, the item is removed from the cart pag
   //expect that the item is not there
 });
 
-test("when the user clicks x in the cart page, the item is removed from the cart page", () => {
+test("when the user clicks x in the cart page, the item is removed from the cart page", async() => {
   //render app
   //wait for cart items to show up
   //get a reference to the close button
   //click the close button
   //expect that the cart item is not there
+
+  render(<App />);
+  const linkToMenu = screen.getByRole('link', {name: 'Menu'});
+  userEvent.click(linkToMenu);
+  await waitFor(()=> screen.findByText(/red bean bread/i));
+  const addToCartButton = screen.getByRole('button', {name: 'Add to Cart'});
+  userEvent.click(addToCartButton);
+  const linkToCart = screen.getByRole('link', {name: 'Cart'});
+  userEvent.click(linkToCart);
+  await waitFor(()=> screen.findByText(/red bean bread/i));
+  const removeButton = screen.getByTestId(/removeButton/);
+
+  expect(screen.getByText(/red bean bread/i)).toBeInTheDocument();
+  userEvent.click(removeButton);
+  
+  await waitForElementToBeRemoved(()=> screen.getByText(/red bean bread/i));
+  
+  expect(screen.queryByText(/red bean bread/i)).not.toBeInTheDocument();
+
 });

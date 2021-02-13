@@ -8,8 +8,8 @@ export const handlers = [
         {
           name: "Red Bean Bread",
           price: 5,
-          category: 'Bread',
-          imageLocation: 'images/red-bean-bread.jpeg'
+          category: "Bread",
+          imageLocation: "images/red-bean-bread.jpeg",
         },
       ])
     );
@@ -23,12 +23,11 @@ export const handlers = [
           {
             name: "Red Bean Bread",
             quantity: 1,
-            price:5,
-
+            price: 5,
           },
         ],
         subtotal: 5,
-        tax: .65,
+        tax: 0.65,
         total: 5.65,
       })
     );
@@ -47,6 +46,18 @@ export const handlers = [
         subtotal: 15,
         tax: 1.94,
         total: 16.94,
+      })
+    );
+  }),
+
+  rest.delete("/cart", (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        cartItems: [],
+        subtotal: 0,
+        tax: 0,
+        total: 0,
       })
     );
   }),

@@ -1,7 +1,7 @@
 const { menuItems } = require("./database-cafe");
 const express = require("express");
 const app = express();
-const { updateCart } = require("./server-helper-functions");
+const { updateCart, removeItem } = require("./server-helper-functions");
 
 /*--------------------------------------------------------------
 
@@ -37,5 +37,13 @@ app.post("/cart", (req, res) => {
   console.log(cart);
   res.json(cart);
 });
+
+app.delete('/cart', (req, res)=>{
+  const itemName = req.body.itemName;
+  const updatedCart = removeItem(itemName, cart);
+  cart = updatedCart;
+  console.log(cart);
+  res.json(cart);
+})
 
 app.listen(8000, () => console.log("listening at port 8000"));

@@ -36,6 +36,16 @@ function App() {
       .then((updatedCart) => setCart(updatedCart));
   };
 
+  const removeItem = (itemName) => {
+    fetch("/cart", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ itemName: itemName }),
+    })
+      .then((res) => res.json())
+      .then((updatedCart) => setCart(updatedCart));
+  };
+
   return (
     <div className="App">
       <h1>Cafe</h1>
@@ -51,7 +61,12 @@ function App() {
           </Route>
 
           <Route path="/cart">
-            <Cart cart={cart} setCart={setCart} updateCart={updateCart} />
+            <Cart
+              cart={cart}
+              setCart={setCart}
+              updateCart={updateCart}
+              removeItem={removeItem}
+            />
           </Route>
         </Switch>
       </Router>

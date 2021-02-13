@@ -123,3 +123,12 @@ I had an error where the totals mess up when I try to increase the quantity of a
 -Oh, the error was I wasn't passing the right props, I had menu={menuItems} when it was supposed to be menuItems ={menuItems}
 -Contrary to what I thought, it actually wasn't working in the app, so the test, was rightfully complaining
 -Consequently, this seems to have gotten rid of the errors I've been getting such as overlapping act calls
+
+#I added the delete feature. I can delete items. However, once I am down to my last item, I can't.
+-TypeError: Reduce of empty array with no initial value
+    at Array.reduce (<anonymous>)
+    at Cart.get subtotal [as subtotal] (/Users/julienne/Documents/Coding/zReact-Apps/shop/src/server/cart.js:14:22)
+    at convertToCartObject (/Users/julienne/Documents/Coding/zReact-Apps/shop/src/server/server-helper-functions.js:61:20)
+    at removeItem (/Users/julienne/Documents/Coding/zReact-Apps/shop/src/server/server-helper-functions.js:72:12)
+    at /Users
+-to solve this, I added a condition that it will only return the result of the reduce method if the array is not empty, otherwise, return 0
