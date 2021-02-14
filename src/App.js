@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import "./App.css";
 import { Cart } from "./components/Cart";
 import { HomePage } from "./components/Homepage";
@@ -48,8 +48,10 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Cafe</h1>
       <Router>
+        <h1 className="heading">
+          <Link to="/">Seaside Cafe</Link>
+        </h1>
         <Navigation />
         <Switch>
           <Route path="/" exact>

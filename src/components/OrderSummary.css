@@ -1,3 +1,18 @@
+.order-summary {
+    display: grid;
+    grid: 1fr 1fr 1fr 1fr 3fr/1fr;
+    height: 180px;
+    border-radius: 3px;
+    margin: 36px 12px;
+    padding: 18px;    
+}
+
+.order-summary__heading {
+    font-size: 12px;
+    font-weight: 400px;
+    text-transform: uppercase;
+}
+
 .subtotal, .tax, .total {
     display: grid;
     grid: 1fr / 150px 50px;
@@ -12,4 +27,8 @@
 .subtotal__cost, .tax__cost, .total__cost {
     grid-area: cost;
     justify-self: flex-end;
+}
+
+.checkout {
+    align-self: flex-end;
 }

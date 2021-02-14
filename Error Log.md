@@ -132,3 +132,6 @@ I had an error where the totals mess up when I try to increase the quantity of a
     at removeItem (/Users/julienne/Documents/Coding/zReact-Apps/shop/src/server/server-helper-functions.js:72:12)
     at /Users
 -to solve this, I added a condition that it will only return the result of the reduce method if the array is not empty, otherwise, return 0
+
+#I've been using h1s for headings. I forgot to treat the components as just a part of one page. I have been treating them like they are a separate page of their own, hence, their own heading at the level of h1. I ended up having multiple h1s for one page.
+- Don't forget that even though they have a dedicated page, they are still part of a bigger page. Their headings will be lower in level.

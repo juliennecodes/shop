@@ -7,13 +7,11 @@ function Loading() {
 
 export function Menu({ menuItems, updateCart }) {
   return menuItems ? (
-    <div>
-      <h1>Menu</h1>
+    <div className="menu">
       <MenuItems menuItems={menuItems} updateCart={updateCart} />
     </div>
   ) : (
-    <div>
-      <h1>Menu</h1>
+    <div className="menu">
       <Loading />
     </div>
   );

@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: row;
     width: 108px;
-    border: 1px solid hsl(0, 0%, 50%);
+    border: 1px solid hsl(0, 0%, 80%);
 }
 
 .increase-qty, .decrease-qty{

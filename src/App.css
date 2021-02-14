@@ -1,7 +1,30 @@
-.App {
-    padding: 24px 36px;
+.heading{
+    display: block;
+    padding-top: 24px;
+    padding-bottom: 8px;
+    font-size: 36px;
+    text-align: center;
 }
 
-h1 {
-    font-size: 12px;
+.heading, .navigation, .menu, .cart{
+    display: grid;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+/* Colours */
+.App {
+    background-color: hsl(0, 0%, 85%);
+}
+
+.heading, .navigation{
+    background-color: hsl(0, 0%, 75%);
+}
+
+.cart-item {
+    background-color: hsl(0, 0%, 90%);
+}
+
+.order-summary{
+    background-color: hsl(0, 0%, 90%);
 }

@@ -1,6 +1,5 @@
 .menu-item{
     display: grid;
-    grid: 5fr 1fr 1fr 1fr/ 1fr;
     grid-template-areas:
     "image"
     "name"
@@ -9,11 +8,16 @@
      ;
     padding: 12px;
     align-items: center;
+    width: 240px;
+    margin: 18px 12px;
+    border-radius: 3px;
+    justify-self: center;
 }
 
 .menu-item__image {
     grid-area: image;
     max-width: 150px;
+    border-radius: 3px;
 }
 
 .menu-item__name {
@@ -27,4 +31,6 @@
 
 .menu-item__button {
     grid-area: button;
+    justify-self: flex-start;
+    padding: 4px 12px;
 }

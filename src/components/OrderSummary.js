@@ -29,11 +29,12 @@ function Total({ total }) {
 
 export function OrderSummary({ subtotal, tax, total }) {
   return (
-    <>
-      <h1>Order Summary</h1>
+    <div className="order-summary">
+      <h2 className="order-summary__heading">Order Summary</h2>
       <Subtotal subtotal={subtotal} />
       <Tax tax={tax} />
       <Total total={total} />
-    </>
+      <button className="checkout" onClick={()=> alert('Checkout!')}>Checkout</button>
+    </div>
   );
 }

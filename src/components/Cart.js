@@ -1,6 +1,7 @@
 // import {useEffect} from 'react';
 import { CartItems } from "./CartItems";
 import { OrderSummary } from "./OrderSummary";
+import './Cart.css';
 
 function Loading() {
   return <p>Loading</p>;
@@ -8,13 +9,20 @@ function Loading() {
 
 export function Cart({ cart, updateCart, removeItem }) {
   return cart ? (
-    <div>
-      <CartItems cartItems={cart.cartItems} updateCart={updateCart} removeItem={removeItem}/>
-      <OrderSummary subtotal={cart.subtotal} tax={cart.tax} total={cart.total} />
+    <div className="cart">
+      <CartItems
+        cartItems={cart.cartItems}
+        updateCart={updateCart}
+        removeItem={removeItem}
+      />
+      <OrderSummary
+        subtotal={cart.subtotal}
+        tax={cart.tax}
+        total={cart.total}
+      />
     </div>
   ) : (
-    <div>
-      <h1>Cart</h1>
+    <div className="cart">
       <Loading />
     </div>
   );

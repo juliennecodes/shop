@@ -4,11 +4,7 @@ import './Navigation.css';
 export function Navigation() {
   return (
     <nav className="navigation">
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-
+      <ul className="navigation__links">
         <li>
           <Link to="/menu">Menu</Link>
         </li>

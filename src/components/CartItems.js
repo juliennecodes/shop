@@ -1,10 +1,10 @@
 import { CartItem } from "./CartItem";
+import "./CartItems.css";
 
 export function CartItems({ cartItems, updateCart, removeItem }) {
   return (
-    <div>
-      <h1>Cart</h1>
-      <ul className="cart-items">
+    <div className="cart-items">
+      <ul className="cart-items__list">
         {cartItems.map((cartItem, index) => {
           return (
             <CartItem
