@@ -1,8 +1,12 @@
-.navigation{
-    padding: 24px 36px;
+.navigation {
+  padding: 24px 36px;
 }
 
-.navigation__links{
-    display: flex;
-    justify-content: space-around;
+.navigation__links {
+  display: flex;
+  justify-content: space-around;
+}
+
+.selected {
+  border-bottom: 3px solid black;
 }

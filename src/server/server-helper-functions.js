@@ -34,6 +34,17 @@ function isNotInCart(itemName, cart) {
     if (x) return false; else return true;
 }
 
+// function changeItemQuantity(itemName, cart, newQty) {
+//   const updatedCart = cart.cartItems.map((cartItem) => {
+//     if (cartItem.name === itemName) {
+//       return { ...cartItem, quantity: cartItem.quantity + newQty };
+//     } else {
+//       return cartItem;
+//     }
+//   });
+//   return updatedCart;
+// }
+
 function changeItemQuantity(itemName, cart, newQty) {
   const updatedCart = cart.cartItems.map((cartItem) => {
     if (cartItem.name === itemName) {
@@ -42,7 +53,9 @@ function changeItemQuantity(itemName, cart, newQty) {
       return cartItem;
     }
   });
-  return updatedCart;
+
+  const checkedUpdatedCart = updatedCart.filter(cartItem => cartItem.quantity > 0);
+  return checkedUpdatedCart;
 }
 
 function addItemToCart(itemName, cart, newQty, shelf) {

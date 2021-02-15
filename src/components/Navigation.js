@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import './Navigation.css';
 
 export function Navigation() {
@@ -6,11 +6,11 @@ export function Navigation() {
     <nav className="navigation">
       <ul className="navigation__links">
         <li>
-          <Link to="/menu">Menu</Link>
+          <NavLink to="/menu" activeClassName="selected">Menu</NavLink>
         </li>
 
         <li>
-          <Link to="/cart">Cart</Link>
+          <NavLink to="/cart" activeClassName="selected">Cart</NavLink>
         </li>
       </ul>
     </nav>

@@ -1,15 +1,17 @@
 .cart {
-    display: grid;
-    grid-template: 2fr 1fr;
-    grid-template-areas: 
-    "cart-items order-summary";
+  display: grid;
+  grid-template-columns: 1fr 250px;
+  grid-template-areas: "cart-items order-summary";
 }
 
-.cart-items{
-    grid-area: cart-items;
+.cart-items {
+  grid-area: cart-items;
 }
 
 .order-summary {
-    grid-area: order-summary;
+  grid-area: order-summary;
 }
 
+.empty-cart-message {
+    padding-top: 36px;
+}

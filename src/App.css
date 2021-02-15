@@ -13,6 +13,11 @@
 }
 
 /* Colours */
+body {
+    min-height: 100vh;
+    background-color: hsl(0, 0%, 85%);
+}
+
 .App {
     background-color: hsl(0, 0%, 85%);
 }

@@ -74,6 +74,8 @@ I wasn't sure if I should depend on global bindings. It seems to work fine but i
 //it seems as though it is not being picked up on.
 
 The reason I wanted to cut down on it was to not crowd the function that was using this function.
+-human error, cart and menuItems already declared inside function so those take priority in naming over the global one
+
 
 #Error missed by test
 I had an error where the totals mess up when I try to increase the quantity of an already existing cart item. Tracking it down was a bit of pain since all the tests were passing and it seemed like the functions worked as they should. The error was I missed writing the parameter in updateCart's helper function. It seems obvious now. It was in changeQuantity. However, I did check the actual function instead of the one inside updateCart. I also went to isInCart before I checked updateCart. The test missed the error because while I was adding multiple quantities, I was adding them in one go. So in updateCart, instead of changing item quantity of an already existing cart item, I was actually just adding item to cart. This was in the test for update cart. I think I wrote the other tests fine, maybe.
@@ -112,6 +114,7 @@ I had an error where the totals mess up when I try to increase the quantity of a
 #Why isn't the promise being handled? Isn't await the one handling promises?
 -await waitFor(async() => expect(await screen.findByText(/red bean bread/i))).toBeInTheDocument();
 -screenshot
+-wrong structure
 
 #Trouble with menu items being rendered in test
 - I don't know why but I'm having trouble with the menu items being rendered in test
@@ -135,3 +138,11 @@ I had an error where the totals mess up when I try to increase the quantity of a
 
 #I've been using h1s for headings. I forgot to treat the components as just a part of one page. I have been treating them like they are a separate page of their own, hence, their own heading at the level of h1. I ended up having multiple h1s for one page.
 - Don't forget that even though they have a dedicated page, they are still part of a bigger page. Their headings will be lower in level.
+
+#I wanted to have the link to the page underlined if the user is currently in the page. I found out that there is a special version of link, which is navlink. It adds styling attributes to the link if the page it links to matches the current url. 
+- there was an error. It is solved now but I don't really know what it was. I just clicked what VScode prompted me to, which was to install types of something at react-router-dom, whatever that is
+-module "/Users/julienne/Documents/Coding/zReact-Apps/shop/node_modules/react-router-dom/index"
+Could not find a declaration file for module 'react-router-dom'. '/Users/julienne/Documents/Coding/zReact-Apps/shop/node_modules/react-router-dom/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/react-router-dom` if it exists or add a new declaration (.d.ts) file containing `declare module 'react-router-dom';`ts(7016)
+
+#So far, I've only used conditional rendering at one level, meaning there is only one condition and you instruct the program to render one thing or the other depending on the condition. This was necessary for the loading message if the cart data from the server wasn't received just yet. However, I also needed to conditionally render items or the message cart is empty depending on whether there were cart items or not in the cart. It turns out you can nest conditions using ternary operator.

@@ -15,7 +15,7 @@
 
 .subtotal, .tax, .total {
     display: grid;
-    grid: 1fr / 150px 50px;
+    grid: 1fr / 2fr 1fr;
     grid-template-areas:
     "title cost" ;
 }
