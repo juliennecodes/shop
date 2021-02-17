@@ -146,3 +146,35 @@ Could not find a declaration file for module 'react-router-dom'. '/Users/julienn
   Try `npm i --save-dev @types/react-router-dom` if it exists or add a new declaration (.d.ts) file containing `declare module 'react-router-dom';`ts(7016)
 
 #So far, I've only used conditional rendering at one level, meaning there is only one condition and you instruct the program to render one thing or the other depending on the condition. This was necessary for the loading message if the cart data from the server wasn't received just yet. However, I also needed to conditionally render items or the message cart is empty depending on whether there were cart items or not in the cart. It turns out you can nest conditions using ternary operator.
+
+#I was having trouble with the increase button. It's easy to get a button that has a text as a label but it isn't as straightforward it seems to get a button that is an icon. I was getting errors when I was doing testing even though it was working in the app. I was waiting for an element to show up but it wasn't doing that. I'm not sure exactly what was causing the error but it seems to have solved now. I wasn't sure if it was data test id not working? I did change data test id and used aria label instead. It seems you can use the options object with name as the aria label or so it seems. I'll investigate later. 
+- I don't know whether I should use getByRole button with options object with name property or getByLabelText. I'm using the latter for the remove button, which seems to pass the test. I used the former for the increaseButton.
+- The reason I'm also wondering if it's a server issue is because the total goes to 3.39. It's supposed to be 2.26 since it starts with 1.13. When you add one quantity, it's supposed to be 2.26. However, the error shows that it is 3.39.
+-I think it's also bleeding into other tests. Since the cart binding maybe holding onto values. I thought reset handlers takes care of resetting the server but maybe not?
+-Okay, it may be the server. My solution for that is creating a new endpoint that resets the cart value so it is like the initial value. Because the value of the cart persists between tests, it has to be reset as well. I think this only applies to the mock server.
+-My initial solution to the problem was to do server.close after each test and server.listen before each test. That created an error though -       Error: Error: connect ECONNREFUSED 127.0.0.1:80
+-So I made a function that makes a get request to the reset endpoint. However, I'm getting this error.     SyntaxError: Unexpected end of JSON input
+        at parse (<anonymous>)
+-It's probably because I'm not doing anything with the value received. I configured the mock server to just return a 200 status.
+-I console logged the response and I'm still getting an error. Maybe you just can't send 200 status?
+-I also flipped the order in case it was that, I had resetHandlers before resetCart and switched it but I'm still getting the error
+-The SyntaxError: Unexpected end of JSON input error is fixed. I had to actually send something back instead of just 200 status.
+-I got rid of console logging the response and it still works so I guess it is just returning the response
+
+#      Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
+          at App (/Users/julienne/Documents/Coding/zReact-Apps/shop/src/App.js:10:27)
+             34 |     })
+      35 |       .then((res) => res.json())
+    > 36 |       .then((updatedCart) => setCart(updatedCart));
+         |                              ^
+      37 |   };
+      38 |
+      39 |   const removeItem = (itemName) => {
+
+-Why?!
+-I got this error in test when trying to decrease item quantity
+-it's solved now probably because some other error resolved itself
+
+#Found multiple elements with the text: /0\.00/
+- I had an item go from one quantity to zero. This will show 0.00 in the cart page. However, there are numerous 0.00 in subtotal, tax, and total. I guess I have to some other way to prove that the item decreased? How do I deal with this? Does it matter as long as I'm proving that the item is decreasing?
+- for now, I'm going to add two items initially and just show the total decreasing

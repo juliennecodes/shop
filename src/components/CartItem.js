@@ -17,7 +17,7 @@ function Remove({name, removeItem}) {
   return (
     <div className="cart-item__remove">
       <svg
-        data-testid="removeButton"
+        aria-label="removeButton"
         onClick={()=> removeItem(name)}
         xmlns="http://www.w3.org/2000/svg"
         height="24"

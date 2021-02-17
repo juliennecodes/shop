@@ -34,17 +34,6 @@ function isNotInCart(itemName, cart) {
     if (x) return false; else return true;
 }
 
-// function changeItemQuantity(itemName, cart, newQty) {
-//   const updatedCart = cart.cartItems.map((cartItem) => {
-//     if (cartItem.name === itemName) {
-//       return { ...cartItem, quantity: cartItem.quantity + newQty };
-//     } else {
-//       return cartItem;
-//     }
-//   });
-//   return updatedCart;
-// }
-
 function changeItemQuantity(itemName, cart, newQty) {
   const updatedCart = cart.cartItems.map((cartItem) => {
     if (cartItem.name === itemName) {

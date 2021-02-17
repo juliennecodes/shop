@@ -12,7 +12,7 @@ export function Quantity({ name, quantity, updateCart }) {
 
 function IncreaseQty({name, updateCart}) {
   return (
-    <button className="increase-qty" onClick={()=> updateCart(name, 1)} data-test-id="increaseQtyButton">
+    <button className="increase-qty" onClick={()=> updateCart(name, 1)} aria-label="increaseQtyButton">
       <svg
         className="increase-qty__svg"
         xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,7 @@ function IncreaseQty({name, updateCart}) {
 
 function DecreaseQty({name, updateCart}) {
   return (
-    <button className="decrease-qty" onClick={()=> updateCart(name, -1)} data-test-id="decreaseQtyButton">
+    <button className="decrease-qty" onClick={()=> updateCart(name, -1)} aria-label="decreaseQtyButton">
       <svg
         className="decrease-qty__svg"
         xmlns="http://www.w3.org/2000/svg"
