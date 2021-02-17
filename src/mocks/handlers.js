@@ -1,12 +1,6 @@
 import { rest } from "msw";
 import {
   updateCart,
-  isInCart,
-  isNotInCart,
-  changeItemQuantity,
-  addItemToCart,
-  pickItemFromShelf,
-  convertToCartObject,
   removeItem,
 } from "./helper-functions";
 
@@ -64,6 +58,5 @@ export const handlers = [
       total: 0,
     };
     return res(ctx.status(200), ctx.json(cart));
-    // return res(ctx.status(200));
   }),
 ];
