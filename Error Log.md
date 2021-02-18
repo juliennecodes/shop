@@ -178,3 +178,25 @@ Could not find a declaration file for module 'react-router-dom'. '/Users/julienn
 #Found multiple elements with the text: /0\.00/
 - I had an item go from one quantity to zero. This will show 0.00 in the cart page. However, there are numerous 0.00 in subtotal, tax, and total. I guess I have to some other way to prove that the item decreased? How do I deal with this? Does it matter as long as I'm proving that the item is decreasing?
 - for now, I'm going to add two items initially and just show the total decreasing
+
+#what does server.resetHandlers() do?
+
+#Sometimes the test passes and sometimes it does not
+- I've been using just one waitFor thinking that the presence of one element meant that the other element meant that the other element would be there as well, but that doesn't seem to be the case. I added the findBy query of the other element just to be on the safe side and it seems to make the tests pass more reliably?
+
+#I might have problems with my test. I just did the thing where you change the value and you know the test is supposed to fail but it passes.
+- I changed the regex value and it still passes as long as it contains the strings of cup jelly
+- Is there a term for this? What else do you do to check that the test isn't too lax? Just change values around?
+- Yeah, I think my tests are too lax, I found a test that shouldn't pass but it is passing
+
+#test("cart shows cart items", async () => {
+  render(<App />);
+  const linkToMenu = screen.getByRole('link', {name: 'Menu'});
+  await waitFor(()=> screen.findByText(/cup jelly/i));
+  ...
+});
+//weird, why is this test passing? I didn't click on linkToMenu but the test was able to find cup jelly and add to cart buttons
+//that shouldn't be available in the homepage, which is where the user is without clicking link to menu
+//this test shouldn't pass so why is it passing?
+//Oh, I did screen.debug and it seems like the homepage leads to the menupage directly? Like '/' renders menu component :S
+//I tried adding exact attribute in the routes for menu and cart but that didn't change anything

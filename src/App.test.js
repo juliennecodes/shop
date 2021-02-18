@@ -29,16 +29,36 @@ test("menu items are rendered", async () => {
 
 test("cart shows cart items", async () => {
   render(<App />);
+  screen.debug();
+
+  const linkToMenu = screen.getByRole('link', {name: 'Menu'});
+
+  await waitFor(()=> screen.findByText(/cup jelly/i));
+  screen.debug();
+  
+  const addToCartButtons = screen.getAllByRole('button', {name: 'Add to Cart'});
+
+  userEvent.click(addToCartButtons[0]);
+  userEvent.click(addToCartButtons[1]);
+  
   const linkToCart = screen.getByRole("link", { name: "Cart" });
 
   userEvent.click(linkToCart);
-  await waitFor(() => screen.findByText(/order summary/i));
+  await waitFor(() => screen.findByText(/cup jelly/i));
+  await waitFor(() => screen.findByText(/custard/i));
 
+  expect(screen.getByText(/cup jelly/i)).toBeInTheDocument();
+  expect(screen.getByText(/custard/i)).toBeInTheDocument();
   expect(screen.getByText(/Order Summary/)).toBeInTheDocument();
   expect(screen.getByText(/Subtotal/)).toBeInTheDocument();
   expect(screen.getByText(/Tax/)).toBeInTheDocument();
   expect(screen.getByText(/Total/)).toBeInTheDocument();
 });
+//weird, why is this test passing? I didn't click on linkToMenu but the test was able to find cup jelly and add to cart buttons
+//that shouldn't be available in the homepage, which is where the user is without clicking link to menu
+//this test shouldn't pass so why is it passing?
+//Oh, I did screen.debug and it seems like the homepage leads to the menupage directly? Like '/' renders menu component :S
+//I tried adding exact attribute in the routes for menu and cart but that didn't change anything
 
 test("when user clicks add to cart button, item is added to cart", async () => {
   render(<App />);
@@ -110,6 +130,7 @@ test("when user clicks - in the cart page, item quantity decreases by one", asyn
   
   userEvent.click(linkToCart);
   await waitFor(() => screen.findByText(/cup jelly/i));
+  await waitFor(()=> screen.findByText(/2\.26/));
   
   expect(screen.getByText(/cup jelly/i)).toBeInTheDocument();
   expect(screen.getByText(/2\.26/)).toBeInTheDocument();
