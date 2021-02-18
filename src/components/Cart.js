@@ -3,10 +3,6 @@ import { CartItems } from "./CartItems";
 import { OrderSummary } from "./OrderSummary";
 import "./Cart.css";
 
-function Loading() {
-  return <p>Loading</p>;
-}
-
 export function Cart({ cart, updateCart, removeItem }) {
   return cart ? (
     <div className="cart">
@@ -17,7 +13,7 @@ export function Cart({ cart, updateCart, removeItem }) {
           removeItem={removeItem}
         />
       ) : (
-        <p className="empty-cart-message">Cart is empty</p>
+        <EmptyCart />
       )}
       <OrderSummary
         subtotal={cart.subtotal}
@@ -31,3 +27,12 @@ export function Cart({ cart, updateCart, removeItem }) {
     </div>
   );
 }
+
+function EmptyCart() {
+  return <p className="empty-cart-message">Cart is empty</p>;
+}
+
+function Loading() {
+  return <p>Loading</p>;
+}
+
