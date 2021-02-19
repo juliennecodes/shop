@@ -1,14 +1,14 @@
 const { Cart } = require("./cart");
+const { pickItemFromMenu, convertToCartObject } = require("./helper-functions");
+
+const { isInCart, isNotInCart, removeZeroQuantityItems } = require("./cart-checker");
+
 const {
   updateCart,
-  isInCart,
-  isNotInCart,
   changeItemQuantity,
   addItemToCart,
-  pickItemFromShelf,
-  convertToCartObject,
-  removeItem
-} = require("./server-helper-functions");
+  removeItemFromCart,
+} = require("./cart-modifier");
 
 test("cart updates", () => {
   const cart = {
@@ -193,7 +193,7 @@ test("item is added to cart", () => {
   ]);
 });
 
-test("pick item from shelf is working", () => {
+test("pick item from menu is working", () => {
   const cupJelly = {
     name: "Cup Jelly",
     price: 1,
@@ -209,7 +209,7 @@ test("pick item from shelf is working", () => {
 
   const menuItems = [cupJelly, custard];
 
-  const custardItem = pickItemFromShelf("Custard", menuItems);
+  const custardItem = pickItemFromMenu("Custard", menuItems);
   expect(custardItem).toEqual({
     name: "Custard",
     price: 2,
@@ -274,13 +274,30 @@ test("item can be deleted from the cart", () => {
     ],
   };
 
-  expect(removeItem("Custard", cart)).toEqual({
+  expect(removeItemFromCart("Custard", cart)).toEqual({
     cartItems: [],
     subtotal: 0,
     tax: 0,
     total: 0,
   });
 });
+
+test('check for removing zero quantity items works', ()=> {
+  const cartItems = [
+    {
+      name: "Custard",
+      price: 2,
+      category: "Snack",
+      imageLocation: "images/custard.jpeg",
+      quantity: 0,
+    },
+  ];
+
+  expect(removeZeroQuantityItems(cartItems)).toEqual([]);
+  //do I do const cart instead of cartItems?
+  //I did cartItems because removeZeroQuantityItems takes in cart items
+  
+})
 
 //Helper functions
 function findItem(itemName, cart) {

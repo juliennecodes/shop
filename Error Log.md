@@ -200,3 +200,8 @@ Could not find a declaration file for module 'react-router-dom'. '/Users/julienn
 //this test shouldn't pass so why is it passing?
 //Oh, I did screen.debug and it seems like the homepage leads to the menupage directly? Like '/' renders menu component :S
 //I tried adding exact attribute in the routes for menu and cart but that didn't change anything
+
+#Not really an error but more note/question
+- I just organized the server-helper-functions. I started off by writing what each function does. A pattern/commonality emerges and then you can use that to group functions together and separate it from the others.
+- I still don't know where to place pickItemFromMenu or convertToCartObject other than helper functions
+- Is that how you approach organizing and grouping?
