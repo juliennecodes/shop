@@ -1,15 +1,7 @@
 import { rest } from "msw";
-import {
-  updateCart,
-  removeItem,
-} from "./helper-functions";
+import { Cart } from "./cart";
 
-let cart = {
-  cartItems: [],
-  subtotal: 0,
-  tax: 0,
-  total: 0,
-};
+let cart = new Cart();
 
 const cupJelly = {
   name: "Cup Jelly",
@@ -32,31 +24,33 @@ export const handlers = [
   }),
 
   rest.get("/cart", (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(cart));
+    return res(ctx.status(200), ctx.json(cart.toJSON()));
   }),
 
   rest.post("/cart", (req, res, ctx) => {
     const itemName = req.body.itemName;
     const newQty = req.body.newQty;
-    const updatedCart = updateCart(itemName, cart, newQty, menuItems);
+    const item = pickItemFromMenu(itemName, menuItems);
+    const updatedCart = cart.updateCart(item, newQty);
     cart = updatedCart;
-    return res(ctx.status(200), ctx.json(cart));
+    return res(ctx.status(200), ctx.json(cart.toJSON()));
   }),
 
   rest.delete("/cart", (req, res, ctx) => {
     const itemName = req.body.itemName;
-    const updatedCart = removeItem(itemName, cart);
+    const newQty = req.body.newQty;
+    const item = pickItemFromMenu(itemName, menuItems);
+    const updatedCart = cart.updateCart(item, newQty);
     cart = updatedCart;
-    return res(ctx.status(200), ctx.json(cart));
+    return res(ctx.status(200), ctx.json(cart.toJSON()));
   }),
 
   rest.get("/reset", (req, res, ctx) => {
-    cart = {
-      cartItems: [],
-      subtotal: 0,
-      tax: 0,
-      total: 0,
-    };
-    return res(ctx.status(200), ctx.json(cart));
+    cart = new Cart();
+    return res(ctx.status(200), ctx.json(cart.toJSON()));
   }),
 ];
+
+function pickItemFromMenu(itemName, menu) {
+  return menu.find((menuItem) => menuItem.name === itemName);
+}

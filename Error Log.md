@@ -205,3 +205,20 @@ Could not find a declaration file for module 'react-router-dom'. '/Users/julienn
 - I just organized the server-helper-functions. I started off by writing what each function does. A pattern/commonality emerges and then you can use that to group functions together and separate it from the others.
 - I still don't know where to place pickItemFromMenu or convertToCartObject other than helper functions
 - Is that how you approach organizing and grouping?
+- see note below
+
+#Note on reorganizing
+- have the bigger structure as the first argument, maybe, if it happens often, as in if there are many functions that have that structure as the first argument, maybe those functions can become methods
+    - addItemToCart(cart, item, newQty), removeItemFromCart(cart, item, newQty), updateCart(cart, item, newQty)
+    - can turn into cart.addItem(item, newQty), cart.removeItem(item, newQty), cart.update(item, newQty)
+- another clue is if there are a lot of parameters, maybe it is a clue to simplify
+    - look for reoccuring arguments and see if any can be used
+    - as it happens, it couldn't be item, nor newQty, but cart could
+    - before being a class instance, cart was an object
+    - is it because cart was an object that makes it suitable? item is also an object
+    - is it more because cart was the one being returned to the client
+- are there other ways to deal with restructuring other than creating a class object? other than turning an object into a class instance
+
+#How to test server
+- do you just test that it receives requests?
+- I also had the function pickItemFromMenu there but it seemed a bit excessive to start up the express server just to test one helper function
