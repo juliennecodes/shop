@@ -1,5 +1,4 @@
 const { Cart } = require("./cart");
-const { pickItemFromMenu } = require("./helper-functions");
 
 const cupJelly = {
   name: "Cup Jelly",
@@ -53,7 +52,7 @@ test("item can increase in quantity", () => {
 
   const itemName = "Cup Jelly";
   const newQty = 1;
-  const cupJelly = pickItemFromMenu(itemName);
+  const cupJelly = pickItemFromMenu(itemName, menuItems);
 
   const updatedCart = cart.updateCart(cupJelly, newQty);
 
@@ -86,7 +85,7 @@ test("item can decrease in quantity", () => {
   ]);
   const itemName = "Cup Jelly";
   const newQty = -1;
-  const cupJelly = pickItemFromMenu(itemName);
+  const cupJelly = pickItemFromMenu(itemName, menuItems);
 
   const updatedCart = cart.updateCart(cupJelly, newQty);
 
@@ -126,7 +125,7 @@ test("item can decrease in quantity to zero and is then removed", () => {
   ]);
   const itemName = "Cup Jelly";
   const newQty = -1;
-  const cupJelly = pickItemFromMenu(itemName);
+  const cupJelly = pickItemFromMenu(itemName, menuItems);
 
   const updatedCart = cart.updateCart(cupJelly, newQty);
 
@@ -166,7 +165,7 @@ test("item is removed from cart", () => {
   ]);
 
   const itemName = "Custard";
-  const custard = pickItemFromMenu(itemName);
+  const custard = pickItemFromMenu(itemName, menuItems);
 
   const updatedCart = cart.removeItem(custard);
   expect(updatedCart.toJSON()).toEqual({
@@ -185,3 +184,7 @@ test("item is removed from cart", () => {
     total: 1.13,
   });
 });
+
+function pickItemFromMenu(itemName, menu) {
+  return menu.find((menuItem) => menuItem.name === itemName);
+}

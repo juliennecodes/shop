@@ -29,12 +29,10 @@ test("menu items are rendered", async () => {
 
 test("cart shows cart items", async () => {
   render(<App />);
-  screen.debug();
 
   const linkToMenu = screen.getByRole('link', {name: 'Menu'});
 
   await waitFor(()=> screen.findByText(/cup jelly/i));
-  screen.debug();
   
   const addToCartButtons = screen.getAllByRole('button', {name: 'Add to Cart'});
 

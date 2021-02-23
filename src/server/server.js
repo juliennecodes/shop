@@ -1,21 +1,20 @@
 const { menuItems } = require("./database-cafe");
 const express = require("express");
 const app = express();
-const { updateCart, removeItem } = require("./server-helper-functions");
+const { Cart } = require("./cart");
 
 /*--------------------------------------------------------------
 
 --------------------------------------------------------------*/
-let cart = {
-  cartItems: [],
-  subtotal: 0,
-  tax: 0,
-  total: 0,
-};
+let cart = new Cart();
 
 /*--------------------------------------------------------------
 
 --------------------------------------------------------------*/
+function pickItemFromMenu(itemName, menu) {
+  return menu.find((menuItem) => menuItem.name === itemName);
+}
+
 app.use(express.json());
 
 app.get("/menu", (req, res) => {
@@ -47,3 +46,5 @@ app.delete('/cart', (req, res)=>{
 })
 
 app.listen(8000, () => console.log("listening at port 8000"));
+
+exports.pickItemFromMenu = pickItemFromMenu;
