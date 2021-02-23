@@ -22,9 +22,9 @@ class Cart {
     return this.subtotal + this.tax;
   }
 
-  changeItemQuantity(menuItem, newQty) {
+  changeItemQuantity(item, newQty) {
     const updatedCart = this.cartItems.map((cartItem) => {
-      if (cartItem.name === menuItem.name) {
+      if (cartItem.name === item.name) {
         return { ...cartItem, quantity: cartItem.quantity + newQty };
       } else {
         return cartItem;
@@ -34,13 +34,13 @@ class Cart {
     return updatedCart.filter((cartItem) => cartItem.quantity > 0);
   }
 
-  addItemToCart(menuItem, newQty) {
-    return [...this.cartItems, { ...menuItem, quantity: newQty }];
+  addItemToCart(item, newQty) {
+    return [...this.cartItems, { ...item, quantity: newQty }];
   }
 
-  contains(menuItem) {
+  contains(item) {
     const x = this.cartItems.find((cartItem) => {
-      return cartItem.name === menuItem.name;
+      return cartItem.name === item.name;
     });
 
     //   if (x) {return true;} else {return false;}
@@ -48,14 +48,14 @@ class Cart {
     else return false;
   }
 
-  updateCart(menuItem, newQty) {
-    if (this.contains(menuItem)) {
-      const updatedCartItems = this.changeItemQuantity(menuItem, newQty);
+  updateCart(item, newQty) {
+    if (this.contains(item)) {
+      const updatedCartItems = this.changeItemQuantity(item, newQty);
       return new Cart(updatedCartItems);
     }
 
-    if (!this.contains(menuItem) && newQty > 0) {
-      const updatedCartItems = this.addItemToCart(menuItem, newQty);
+    if (!this.contains(item) && newQty > 0) {
+      const updatedCartItems = this.addItemToCart(item, newQty);
       return new Cart(updatedCartItems);
     } else {
       return this;
@@ -73,6 +73,7 @@ class Cart {
       return this;
     }
   }
+
   toJSON() {
     return {
       cartItems: this.cartItems,
