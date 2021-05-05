@@ -222,3 +222,13 @@ Could not find a declaration file for module 'react-router-dom'. '/Users/julienn
 #How to test server
 - do you just test that it receives requests?
 - I also had the function pickItemFromMenu there but it seemed a bit excessive to start up the express server just to test one helper function
+
+#I'm not sure about the toJSON() name.
+- I don't know what json have to do with it. I think I need to read up on json
+- I thought json objects just turned javascripts into strings or something
+- I don't know what turning the class instance into a string have to do with spreading its properties
+- When I read toJSON(), I have to remember what it does
+- maybe I'll rename it
+- so what is it doing really, it's formatting the class instance, which has its relevant properties in its get method
+- the method is formatting the class instance so that the client receives data that can be easily processed
+- cartItems is mapped over, subtotal is displayed, tax is displayed, total is displayed
